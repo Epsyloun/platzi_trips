@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:platzi_tripps/descriptionWidget.dart';
-import 'package:platzi_tripps/review.dart';
+import 'package:platzi_tripps/gradient.dart';
+import 'package:platzi_tripps/reviewList.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,14 +24,19 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.pink,
           foregroundColor: Colors.white,
         ),
-        body: const Column(
-          children: [
-            DescriptionWidget(
+        body: Stack(
+          children:[
+            const GradientBox(titleName:"Popular"),
+            ListView(
+              children: const [
+                DescriptionWidget(
                 nameSpace: "Duwili Ella",
                 starNumber: 3.5,
                 descriptionName:
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit."),
-            Review(photoURL: "assets/images/background.png")
+                ReviewList()
+              ],
+            )
           ],
         ),
       ),

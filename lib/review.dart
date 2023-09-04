@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:platzi_tripps/components/stars.dart';
 
 class Review extends StatelessWidget {
-  final String photoURL;
 
-  const Review({Key? key, required this.photoURL}) : super(key: key);
+  final String photoURL;
+  final String author;
+  final int reviewCount;
+  final int photosCount;
+  final String miniTitle;
+
+  const Review({Key? key, required this.photoURL, required this.author, required this.reviewCount, required this.photosCount, required this.miniTitle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +35,68 @@ class Review extends StatelessWidget {
       ),
     );
 
-    return Column(
-      //crossAxisAlignment: CrossAxisAlignment.start,
+    final commentAuthor = Container(
+      margin: const EdgeInsets.only(left: 20.0),
+      child: Text(
+        author,
+        style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w200,
+            color: Colors.black,
+            fontFamily: "Lato"),
+        textAlign: TextAlign.left,
+      ),
+    );
+
+    final reviewInfo = Row(
+      children: [
+      Container(
+        margin: const EdgeInsets.only(left: 20.0),
+        child: Text(
+          "$reviewCount reviews - $photosCount photos",
+          style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w200,
+              color: Colors.grey,
+              fontFamily: "Lato"),
+          textAlign: TextAlign.left,
+        ),
+      )
+      ],
+    );
+
+    final reviewTitle = 
+      Container(
+        margin: const EdgeInsets.only(left: 20.0),
+        child: Text(
+          miniTitle,
+          style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w200,
+              color: Colors.black,
+              fontFamily: "Lato"),
+          textAlign: TextAlign.left,
+        ),
+      );
+
+    return Container(
+      margin: const EdgeInsets.only(top: 10.0),
+      child: Column(
       children: [
         Row(children: [textReview]),
-        Row(
-          children: [avatarCircle],
-        ),
+        Row(children: [
+          avatarCircle, 
+          Column(children: [
+          commentAuthor,
+          Row(children: [
+            reviewInfo,
+            const Stars(starNumber: 2)],
+          ),
+          reviewTitle],
+          ),
+        ]),
       ],
+    )
     );
   }
 }

@@ -1,6 +1,6 @@
 # platzi_tripps
 
-A new Flutter project.
+A Flutter project about see reviews to go to a trip
 
 ## Getting Started
 
